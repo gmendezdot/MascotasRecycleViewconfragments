@@ -55,10 +55,10 @@ public class MainActivity extends AppCompatActivity {
 
         animals = new ArrayList<Animales>();
         animals.add(new Animales(R.drawable.leon,R.drawable.dog_bone_50,"LION","5",R.drawable.dog_bone_filled_50));
-        animals.add(new Animales(R.drawable.perro,R.drawable.dog_bone_50,"DOG","0",R.drawable.dog_bone_filled_50));
+        animals.add(new Animales(R.drawable.perro,R.drawable.dog_bone_50,"DOG","1",R.drawable.dog_bone_filled_50));
         animals.add(new Animales(R.drawable.gato,R.drawable.dog_bone_50,"CAT","2",R.drawable.dog_bone_filled_50));
         animals.add(new Animales(R.drawable.elefante,R.drawable.dog_bone_50,"ELEPHANT","3",R.drawable.dog_bone_filled_50));
-        animals.add(new Animales(R.drawable.caballo,R.drawable.dog_bone_50,"HORSE","0",R.drawable.dog_bone_filled_50));
+        animals.add(new Animales(R.drawable.caballo,R.drawable.dog_bone_50,"HORSE","1",R.drawable.dog_bone_filled_50));
     }
 
 

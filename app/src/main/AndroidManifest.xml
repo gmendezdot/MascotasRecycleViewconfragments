@@ -20,6 +20,7 @@
         </activity>
         <activity android:name=".MostrarRaitingMascotas"
             android:label="FAVORITOS"
+
             android:parentActivityName=".MainActivity"
             >
             <meta-data
