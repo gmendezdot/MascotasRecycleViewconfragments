@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+
+    android:layout_marginBottom="1dp"
+    card_view:cardCornerRadius="4dp"
+
+
+
+    android:id="@+id/card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    >
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="6sp"
+        android:paddingLeft="6sp"
+        android:paddingRight="6sp"
+        android:paddingBottom="6sp"
+
+        >
+
+
+
+
+        <ImageView
+            android:id="@+id/photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/leon"
+            />
+
+
+        <ImageView
+            android:id="@+id/bone1"
+            android:layout_width="30sp"
+            android:layout_height="@dimen/bonesize"
+            android:src="@drawable/dog_bone_50"
+            android:layout_below="@+id/photo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/petname"
+            android:gravity="center"
+            android:paddingLeft="8sp"
+            android:layout_below="@+id/photo"
+            android:layout_alignBottom="@+id/bone1"
+            android:layout_toRightOf="@+id/bone1"
+            android:layout_toEndOf="@+id/bone1" />
+
+        <TextView
+            android:id="@+id/countfav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:gravity="center"
+            android:paddingRight="8sp"
+            android:layout_alignBottom="@+id/bone1"
+            android:layout_below="@+id/photo"
+            android:layout_alignTop="@+id/bone2"
+            android:layout_toLeftOf="@+id/bone2"
+            android:layout_toStartOf="@+id/bone2" />
+
+        <ImageView
+            android:id="@+id/bone2"
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:layout_gravity="right"
+            android:src="@drawable/dog_bone_filled_50"
+            android:layout_below="@+id/photo"
+            android:layout_alignTop="@+id/name"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>
