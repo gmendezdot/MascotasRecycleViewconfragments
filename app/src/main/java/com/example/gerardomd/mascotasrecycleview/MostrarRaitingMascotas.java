@@ -1,14 +1,13 @@
 package com.example.gerardomd.mascotasrecycleview;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.os.Parcelable;
-import android.util.Log;
-import android.widget.Toast;
+
+import com.example.gerardomd.mascotasrecycleview.Adapters.AdapterRecycleView;
+import com.example.gerardomd.mascotasrecycleview.Pojo.Animales;
 
 import java.util.ArrayList;
 
@@ -31,8 +30,8 @@ public class MostrarRaitingMascotas extends AppCompatActivity {
 
         animals = new ArrayList<Animales>();
 
-        Intent intent = getIntent();
-        animals = intent.getParcelableArrayListExtra("arrayactividaddos");
+       // Intent intent = getIntent();
+        //animals = intent.getParcelableArrayListExtra("arrayactividaddos");
 
         list = (RecyclerView) findViewById(R.id.recyclerview);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -42,6 +41,27 @@ public class MostrarRaitingMascotas extends AppCompatActivity {
         AdapterRecycleView adapter = new AdapterRecycleView(animals, this);
         list.setAdapter(adapter);
 
+        setpets();
+        setadapter();
 
     }
+
+    public void setadapter(){
+        AdapterRecycleView adapter = new AdapterRecycleView(animals, this);
+        list.setAdapter(adapter);
+    }
+    public void setpets(){
+
+        animals = new ArrayList<Animales>();
+        animals.add(new Animales(R.drawable.c_leon,R.drawable.dog_bone_50,"LION","5",R.drawable.dog_bone_filled_50));
+        animals.add(new Animales(R.drawable.c_perro,R.drawable.dog_bone_50,"DOG","1",R.drawable.dog_bone_filled_50));
+        animals.add(new Animales(R.drawable.c_gato,R.drawable.dog_bone_50,"CAT","2",R.drawable.dog_bone_filled_50));
+        animals.add(new Animales(R.drawable.c_elefante,R.drawable.dog_bone_50,"ELEPHANT","3",R.drawable.dog_bone_filled_50));
+        animals.add(new Animales(R.drawable.c_caballo,R.drawable.dog_bone_50,"HORSE","1",R.drawable.dog_bone_filled_50));
+    }
+
+
+
+
+
 }

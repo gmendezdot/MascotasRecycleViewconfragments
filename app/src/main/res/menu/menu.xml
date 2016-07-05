@@ -8,6 +8,15 @@
         android:icon="@drawable/star_filled_50"
         app:showAsAction="always">
     </item>
+    <item android:id="@+id/contacto"
+        android:title="Contacto"
 
+        >
+    </item>
+    <item android:id="@+id/acercade"
+    android:title="Acerca de"
+
+    >
+</item>
 
 </menu>

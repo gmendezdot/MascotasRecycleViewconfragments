@@ -1,24 +1,34 @@
 package com.example.gerardomd.mascotasrecycleview;
 
 import android.content.Intent;
-import android.os.Parcelable;
 import android.os.PersistableBundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.example.gerardomd.mascotasrecycleview.Adapters.PageAdapter;
+import com.example.gerardomd.mascotasrecycleview.Fragments.InfoPet;
+import com.example.gerardomd.mascotasrecycleview.Fragments.RecyclerViewFragment;
+import com.example.gerardomd.mascotasrecycleview.Pojo.Animales;
+
 import java.util.ArrayList;
-import java.util.Iterator;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
-    private ArrayList<Animales> animals,animalscopy;
-    private RecyclerView list;
+ //   private ArrayList<Animales> animals,animalscopy;
+  //  private RecyclerView list;
+    ArrayList<Animales> Animal;
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+
 
 
 
@@ -27,39 +37,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar miActionBar = (Toolbar) findViewById(R.id.miActionBar);
-        setSupportActionBar(miActionBar);
-        getSupportActionBar().setIcon(R.drawable.cat_footprint);
+      //  Toolbar miActionBar = (Toolbar) findViewById(R.id.miActionBar);
+       // setSupportActionBar(miActionBar);
+       // getSupportActionBar().setIcon(R.drawable.cat_footprint);
 
 
+        toolbar = (Toolbar) findViewById(R.id.miActionBar);
+        tabLayout = (TabLayout) findViewById(R.id.tablayout);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-        setpets();
+        if (toolbar!=null){
+            setSupportActionBar(toolbar);
+        }
 
-        list = (RecyclerView) findViewById(R.id.recyclerview);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        list.setLayoutManager(llm);
 
-        setadapter();
-
+        setUpViewPager();
     }
 
-
-    public void setadapter(){
-        AdapterRecycleView adapter = new AdapterRecycleView(animals, this);
-        list.setAdapter(adapter);
-    }
-
-
-    public void setpets(){
-
-        animals = new ArrayList<Animales>();
-        animals.add(new Animales(R.drawable.leon,R.drawable.dog_bone_50,"LION","5",R.drawable.dog_bone_filled_50));
-        animals.add(new Animales(R.drawable.perro,R.drawable.dog_bone_50,"DOG","1",R.drawable.dog_bone_filled_50));
-        animals.add(new Animales(R.drawable.gato,R.drawable.dog_bone_50,"CAT","2",R.drawable.dog_bone_filled_50));
-        animals.add(new Animales(R.drawable.elefante,R.drawable.dog_bone_50,"ELEPHANT","3",R.drawable.dog_bone_filled_50));
-        animals.add(new Animales(R.drawable.caballo,R.drawable.dog_bone_50,"HORSE","1",R.drawable.dog_bone_filled_50));
-    }
 
 
     @Override
@@ -73,33 +67,19 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId()==R.id.estrella) {
-            //CALLING THE SECOND ACTIVITY
-            raiting();//CREANDO UNA COPIA DEL ARRAYLIST SOLO CON LOS OBJETOS QUE TIENE RAITING
             Intent intent = new Intent(MainActivity.this, MostrarRaitingMascotas.class);
-            intent.putExtra("arrayactividaddos", animalscopy);
+            startActivity(intent);
+        }
+        if (item.getItemId()==R.id.contacto){
+            Intent intent = new Intent(MainActivity.this, Contacto.class);
+            startActivity(intent);
+        }
+        if (item.getItemId()==R.id.acercade){
+            Intent intent = new Intent(MainActivity.this, Acercade.class);
             startActivity(intent);
         }
        return super.onOptionsItemSelected(item);
     }
-
-
-    public void raiting(){
-        int x=0;
-
-        animalscopy = new ArrayList<Animales>(animals);
-        //Iterator<Animales> it = animalscopy.iterator();
-
-        for(int i=0;i<animals.size();i++){
-       //     while(it.hasNext()){
-            if ((animalscopy.get(x).getCount()).equals("0")) {
-                animalscopy.remove(x);
-            } else
-                x++;
-        }
-
-    }
-
-
 
 
 
@@ -113,16 +93,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        // Save the user's current game state
-        // savedInstanceState.putString(snombre, "");
-
-        // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);
     }
 
+    private ArrayList<Fragment> agregarFragments(){
+        ArrayList<Fragment> fragments = new ArrayList<>();
+        fragments.add(new RecyclerViewFragment());
+        fragments.add(new InfoPet());
+        return fragments;
 
+    }
 
+    private void setUpViewPager(){
+        viewPager.setAdapter(new PageAdapter(getSupportFragmentManager(),agregarFragments()));
+        tabLayout.setupWithViewPager(viewPager);
+      //  tabLayout.getTabAt(0).setIcon(R.drawable.ic_contacts);
+       // tabLayout.getTabAt(1).setIcon(R.drawable.ic_info);
+        tabLayout.getTabAt(0).setText("ANIMALES");
+        tabLayout.getTabAt(1).setText("INFO");
 
+    }
 
 
 
